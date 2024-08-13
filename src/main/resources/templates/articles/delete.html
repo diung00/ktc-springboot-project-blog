@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삭제</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <div class="alert alert-warning" role="alert">
+        <h3 class="alert-heading">[[${article.title}]]</h3>
+        <p>삭제 하시겠습니까?</p>
+        <hr>
+        <div class="d-flex justify-content-between">
+            <!-- Form xác nhận xóa -->
+            <form th:action="@{/articles/{id}/delete (id=${article.id})}" method="post">
+                <button type="submit" class="btn btn-danger">삭제</button>
+            </form>
+            <!-- Link quay lại trang chi tiết bài viết -->
+            <a th:href="@{/articles/{id} (id=${article.id})}" class="btn btn-secondary">아니오</a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS và phụ thuộc -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

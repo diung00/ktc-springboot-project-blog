@@ -11,7 +11,7 @@
     <h1 class="mb-4">게시글 업데이트</h1>
     <div class="mb-4">
         <a href="/boards" class="btn btn-primary">홈</a>
-        <a th:href="@{/articles/{id} (id=${article.id})}" class="btn btn-secondary">게시글들 돌아보기</a>
+        <a th:href="@{/articles/{id} (id=${article.id})}" class="btn btn-secondary">모든 게시글 보기</a>
     </div>
 
     <form th:action="@{/articles/{id}/update (id=${article.id})}" method="post">

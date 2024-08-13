@@ -75,6 +75,7 @@ public class ArticleController {
     }
 
 
+
     @PostMapping("{id}/update")
     public String update(
             @PathVariable("id")
@@ -88,6 +89,16 @@ public class ArticleController {
     ){
         service.update(id, title, content, writer);
         return String.format("redirect:/articles/%d", id);
+    }
+
+    @GetMapping("{id}/delete")
+    public String deleteView(
+            @PathVariable("id")
+            Long id,
+            Model model
+    ){
+        model.addAttribute("article", service.readOne(id));
+        return "articles/delete.html";
     }
 
     @PostMapping("{id}/delete")

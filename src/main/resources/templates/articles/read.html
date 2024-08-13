@@ -14,11 +14,10 @@
         <a href="/boards" class="btn btn-primary">홈</a>
         <a href="/articles" class="btn btn-secondary">모든 게시글 보기</a>
         <a th:href="@{/articles/{id}/update (id=${article.id})}" class="btn btn-warning">업데이트</a>
+        <a th:href="@{/articles/{id}/delete (id=${article.id})}" class="btn btn-warning">삭제</a>
     </div>
 
-    <form th:action="@{/articles/{id}/delete (id=${article.id})}" method="post" class="mb-4">
-        <input type="submit" value="삭제" class="btn btn-danger">
-    </form>
+
 
     <hr>
 
