@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="mb-4">모든 게시글</h1>
+    <a href="/boards" class="btn btn-primary mb-4">홈</a>
+
+    <div th:if="${articleList.isEmpty()}" class="alert alert-info">
+        <p>게시글이 없습니다</p>
+    </div>
+
+    <div th:unless="${articleList.isEmpty()}" th:each="article: ${articleList}">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">ID: [[${article.id}]]</h5>
+                <h6 class="card-subtitle mb-2 text-muted">제목: [[${article.title}]]</h6>
+                <p class="card-text">작성인: [[${article.writer}]]</p>
+                <a th:href="@{/articles/{id} (id=${article.id})}" class="btn btn-info">읽기</a>
+            </div>
+        </div>
+    </div>
+
+    <a href="/articles/create" class="btn btn-success">게시글 작성하기</a>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

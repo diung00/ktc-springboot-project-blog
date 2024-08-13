@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 업데이트</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="mb-4">게시글 업데이트</h1>
+    <div class="mb-4">
+        <a href="/boards" class="btn btn-primary">홈</a>
+        <a th:href="@{/articles/{id} (id=${article.id})}" class="btn btn-secondary">게시글들 돌아보기</a>
+    </div>
+
+    <form th:action="@{/articles/{id}/update (id=${article.id})}" method="post">
+        <div class="form-group mb-3">
+            <label for="boardTitle-select" class="form-label">게시판 선택: </label>
+            <select class="form-control" name="boardId" id="boardTitle-select">
+                <option th:each="board : ${board_titleList}"
+                        th:value="${board.id}"
+                        th:text="${board.board_title}">
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="title-input">제목: </label>
+            <input type="text" id="title-input" name="title" class="form-control" th:value="${article.title}">
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="content-area">내용: </label>
+            <textarea id="content-area" name="content" class="form-control" rows="5">[[${article.content}]]</textarea>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="writer-input">작성인</label>
+            <input type="text" id="writer-input" name="writer" class="form-control" th:value="${article.writer}">
+        </div>
+
+        <input type="submit" value="업데이트" class="btn btn-success">
+    </form>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

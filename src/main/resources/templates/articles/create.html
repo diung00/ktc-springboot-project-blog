@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 작성</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">게시글 작성하기</h1>
+    <div class="mb-4">
+        <a href="/boards" class="btn btn-primary mr-2">홈</a>
+        <a href="/articles" class="btn btn-secondary">게시판 돌아보기</a>
+    </div>
+    <form action="/articles/create" method="post">
+
+        <div class="form-group">
+            <label for="boardTitle-select">게시판 선택:</label>
+            <select class="form-control" name="boardId" id="boardTitle-select">
+                <option
+                        th:each="board : ${board_titleList}"
+                        th:value="${board.id}"
+                        th:text="${board.board_title}"
+
+                >
+
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="title-input">제목:</label>
+            <input type="text" class="form-control" id="title-input" name="title">
+        </div>
+        <div class="form-group">
+            <label for="content-area">내용:</label>
+            <textarea class="form-control" id="content-area" name="content"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="writer-input">작성인:</label>
+            <input type="text" class="form-control" id="writer-input" name="writer">
+        </div>
+
+        <button type="submit" class="btn btn-success">글쓰기 올리기</button>
+
+    </form>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

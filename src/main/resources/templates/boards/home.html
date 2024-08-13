@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 주제</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="mb-4">홈</h1>
+
+    <!-- Không có bài viết -->
+    <div th:if="${board_titleList.isEmpty()}" class="alert alert-info">
+        게시판이 없습니다
+    </div>
+
+    <!-- Có bài viết -->
+    <div th:unless="${board_titleList.isEmpty()}" th:each="board : ${board_titleList}">
+        <div class="card mb-3">
+            <div class="card-body">
+                <a th:href="@{/boards/{id} (id=${board.id})}" class="card-link">
+                    <h2>[[${board.id}]]. [[${board.board_title}]]</h2>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
