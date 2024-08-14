@@ -89,12 +89,12 @@ public class ArticleController {
             @RequestParam("writer")
             String writer,
             @RequestParam("inputPassword")
-            String password,
+            String inputPassword,
             Model model
     ){
-        boolean passwordIsCorrect = service.passCompare(id, password);
+        boolean passwordIsCorrect = service.passCompare(id, inputPassword);
         if (!passwordIsCorrect) {
-            model.addAttribute("errorMessage", "비밀번호 틀렸습니다.");
+            model.addAttribute("errorMessage", "비밀번호 틀렸습니다!");
             return "articles/passIncorrect.html";
         }
         service.update(id, title, content, writer);
@@ -130,7 +130,7 @@ public class ArticleController {
             return "articles/passIncorrect.html";
         }
         service.delete(id);
-        return "redirect:/articles ";
+        return "redirect:/articles";
     }
 
 
