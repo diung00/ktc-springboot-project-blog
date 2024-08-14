@@ -12,14 +12,19 @@
     <div class="alert alert-warning" role="alert">
         <h3 class="alert-heading">[[${article.title}]]</h3>
         <p>삭제 하시겠습니까?</p>
-        <hr>
+
         <div class="d-flex justify-content-between">
             <!-- Form xác nhận xóa -->
+
             <form th:action="@{/articles/{id}/delete (id=${article.id})}" method="post">
+                <label for="password">비밀번호: </label>
+                <input type="password" id="password" name="inputPassword" placeholder="비밀번호 입력하세요:">
+<!--                <input type="submit" value="삭제" class="btn btn-success">-->
                 <button type="submit" class="btn btn-danger">삭제</button>
+                <!-- Link quay lại trang chi tiết bài viết -->
+                <a th:href="@{/articles/{id} (id=${article.id})}" class="btn btn-secondary">아니오</a>
             </form>
-            <!-- Link quay lại trang chi tiết bài viết -->
-            <a th:href="@{/articles/{id} (id=${article.id})}" class="btn btn-secondary">아니오</a>
+
         </div>
     </div>
 </div>

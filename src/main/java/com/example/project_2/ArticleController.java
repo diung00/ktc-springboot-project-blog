@@ -44,11 +44,13 @@ public class ArticleController {
             String content,
             @RequestParam("writer")
             String writer,
+            @RequestParam("password")
+            String password,
             @RequestParam ("boardId")
             Long boardId
 
     ){
-        Long id = service.create(title, content, writer, boardId).getId();
+        Long id = service.create(title, content, writer,password, boardId).getId();
         return String.format("redirect:/articles/%d", id);
     }
 
@@ -85,11 +87,22 @@ public class ArticleController {
             @RequestParam("content")
             String content,
             @RequestParam("writer")
-            String writer
+            String writer,
+            @RequestParam("inputPassword")
+            String password,
+            Model model
     ){
+        boolean passwordIsCorrect = service.passCompare(id, password);
+        if (!passwordIsCorrect) {
+            model.addAttribute("errorMessage", "비밀번호 틀렸습니다.");
+            return "articles/passIncorrect.html";
+        }
         service.update(id, title, content, writer);
         return String.format("redirect:/articles/%d", id);
+
     }
+
+
 
     @GetMapping("{id}/delete")
     public String deleteView(
@@ -104,9 +117,18 @@ public class ArticleController {
     @PostMapping("{id}/delete")
     public String delete(
             @PathVariable("id")
-            Long id
+            Long id,
+            @RequestParam("inputPassword")
+            String password,
+            Model model
+
 
     ){
+        boolean passwordIsCorrect = service.passCompare(id, password);
+        if (!passwordIsCorrect) {
+            model.addAttribute("errorMessage", "비밀번호 틀렸습니다.");
+            return "articles/passIncorrect.html";
+        }
         service.delete(id);
         return "redirect:/articles ";
     }

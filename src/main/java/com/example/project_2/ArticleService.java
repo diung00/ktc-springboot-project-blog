@@ -26,12 +26,14 @@ public class ArticleService {
             String title,
             String content,
             String writer,
+            String password,
             Long boardId
     ){
         Article article = new Article();
         article.setTitle(title);
         article.setContent(content);
         article.setWriter(writer);
+        article.setPassword(password);
 
         article.setBoard(boardRepository.findById(boardId).orElse(null));
 
@@ -68,6 +70,16 @@ public class ArticleService {
         repository.deleteById(id);
      }
 
+     public boolean passCompare(
+             Long id,
+             String inputPassword
+     ){
+      Article article = repository.findById(id).orElse(null);
+      if (article == null || !article.getPassword().equals(inputPassword)){
+          return false;
+      }
+      return true;
+     }
 
 
 

@@ -23,6 +23,9 @@ public class Article {
     @Setter
     private String writer;
 
+    @Setter
+    private String password;
+
 
 
 
