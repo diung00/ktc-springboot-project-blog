@@ -1,5 +1,6 @@
-package com.example.project_2;
+package com.example.project_2.board;
 
+import com.example.project_2.article.ArticleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +23,9 @@ public class BoardController {
 
     @GetMapping
     public String readAll(Model model){
-        model.addAttribute("board_titleList", service.readAll());
+        model.addAttribute("boards", service.readAll());
 
-        return "boards/home.html";
+        return "boards/home";
 
     }
 
@@ -35,8 +36,8 @@ public class BoardController {
             Long id,
             Model model
     ) {
-        model.addAttribute("board_title", service.readOne(id));
-        return "boards/read.html";
+        model.addAttribute("boardTitle", service.readOne(id));
+        return "boards/read";
     }
 
 

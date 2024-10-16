@@ -14,7 +14,7 @@
         <a href="/boards" class="btn btn-primary">홈</a>
         <a href="/articles" class="btn btn-secondary">모든 게시글 보기</a>
         <a th:href="@{/articles/{id}/update (id=${article.id})}" class="btn btn-warning">업데이트</a>
-        <a th:href="@{/articles/{id}/delete (id=${article.id})}" class="btn btn-warning">삭제</a>
+        <a th:href="@{/articles/{id}/delete (id=${article.id})}" class="btn btn-danger">삭제</a>
     </div>
 
     
@@ -31,18 +31,21 @@
 
     <!-- Form to add a comment -->
     <form th:action="@{/articles/{id}/comments/create (id=${article.id})}" method="post" class="mb-4">
-        <div class="form-group">
-            <label for="comment-input">댓글:</label>
-            <input type="text" id="comment-input" name="content" class="form-control">
-        </div>
+
         <div class="form-group">
             <label for="writer-input">작성인:</label>
             <input type="text" id="writer-input" name="writer" class="form-control">
         </div>
+        <div class="form-group">
+            <label for="comment-input">댓글:</label>
+            <input type="text" id="comment-input" name="content" class="form-control">
+        </div>
+        <label for="password">비밀번호: </label>
+        <input type="password" id="password" name="password" placeholder="비밀번호 생성하세요: " required>
+
         <input type="submit" value="댓글" class="btn btn-primary">
     </form>
 
-    <!-- Display comments -->
     <div th:if="${article.comments.isEmpty()}" class="alert alert-info">
         댓글이 없습니다.
     </div>
@@ -52,6 +55,12 @@
     >
         <div class="mb-2">
             <h3>[[${comment.writer}]]: [[${comment.content}]]</h3>
+            <a th:href="@{/articles/{articleId}/comments/{cmtId}/update (articleId=${article.id}, cmtId=${comment.id})}" class="btn btn-warning">
+                업데이트
+            </a>
+            <a th:href="@{/articles/{articleId}/comments/{cmtId}/delete (articleId=${article.id}, cmtId=${comment.id})}" class="btn btn-danger">
+                삭제
+            </a>
         </div>
     </div>
 </div>

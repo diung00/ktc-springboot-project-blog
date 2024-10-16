@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>삭제</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<div class="container mt-4">
+  <div class="alert alert-warning" role="alert">
+    <p>삭제 하시겠습니까?</p>
+
+    <div class="d-flex justify-content-between">
+
+      <form th:action="@{/articles/{articleId}/comments/{cmtId}/delete (articleId=${article.id}, cmtId=${comment.id})}" method="post">
+        <label for="password">비밀번호: </label>
+        <input type="password" id="password" name="inputPassword" placeholder="비밀번호 입력하세요:">
+         <button type="submit" class="btn btn-danger">삭제</button>
+        <a th:href="@{/articles/{id} (id=${article.id})}" class="btn btn-secondary">아니오</a>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

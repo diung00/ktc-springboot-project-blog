@@ -1,12 +1,12 @@
-package com.example.project_2;
+package com.example.project_2.article;
 
+import com.example.project_2.board.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("articles")
-
 public class ArticleController {
     private final ArticleService service;
     private final BoardService boardService;
@@ -20,7 +20,7 @@ public class ArticleController {
 
     @GetMapping
     public String readAll(Model model) {
-     model.addAttribute("board_titleList", boardService.readAll());
+     model.addAttribute("boards", boardService.readAll());
      model.addAttribute("articleList", service.readAll());
         return "articles/home.html";
     }
@@ -30,7 +30,7 @@ public class ArticleController {
 
     @GetMapping("create")
     public String createView(Model model){
-        model.addAttribute("board_titleList", boardService.readAll());
+        model.addAttribute("boards", boardService.readAll());
 
         return "articles/create.html";
     }
@@ -50,6 +50,7 @@ public class ArticleController {
             Long boardId
 
     ){
+
         Long id = service.create(title, content, writer,password, boardId).getId();
         return String.format("redirect:/articles/%d", id);
     }
@@ -71,7 +72,7 @@ public class ArticleController {
             Long id,
             Model model
     ){
-        model.addAttribute("board_titleList", boardService.readAll());
+        model.addAttribute("boards", boardService.readAll());
         model.addAttribute("article", service.readOne(id));
         return "articles/update.html";
     }

@@ -1,7 +1,6 @@
-package com.example.project_2;
+package com.example.project_2.article;
 
 import com.example.project_2.model.Article;
-import com.example.project_2.model.Board;
 import com.example.project_2.repo.ArticleRepository;
 import com.example.project_2.repo.BoardRepository;
 import org.springframework.stereotype.Service;
@@ -80,12 +79,5 @@ public class ArticleService {
       }
       return true;
      }
-
-
-
-
-
-
-
 }
 

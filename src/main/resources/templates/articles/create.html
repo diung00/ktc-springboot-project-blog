@@ -19,10 +19,11 @@
         <div class="form-group">
             <label for="boardTitle-select">게시판 선택:</label>
             <select class="form-control" name="boardId" id="boardTitle-select">
+                <option value="" disabled selected>게시판을 선택하세요</option>
                 <option
-                        th:each="board : ${board_titleList}"
+                        th:each="board : ${boards}"
                         th:value="${board.id}"
-                        th:text="${board.board_title}"
+                        th:text="${board.boardTitle}"
 
                 >
 
@@ -32,15 +33,15 @@
 
         <div class="form-group">
             <label for="title-input">제목:</label>
-            <input type="text" class="form-control" id="title-input" name="title">
+            <input type="text" class="form-control" id="title-input" name="title" required>
         </div>
         <div class="form-group">
             <label for="content-area">내용:</label>
-            <textarea class="form-control" id="content-area" name="content"></textarea>
+            <textarea class="form-control" id="content-area" name="content" required></textarea>
         </div>
         <div class="form-group">
             <label for="writer-input">작성인:</label>
-            <input type="text" class="form-control" id="writer-input" name="writer">
+            <input type="text" class="form-control" id="writer-input" name="writer" required>
         </div>
 
         <label for="password">비밀번호: </label>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[[${article.title}]]</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+  <h1 class="mb-4">[[${article.title}]]</h1>
+  <div class="mb-4">
+    <a href="/boards" class="btn btn-primary">홈</a>
+    <a href="/articles" class="btn btn-secondary">모든 게시글 보기</a>
+    <a th:href="@{/articles/{id}/update (id=${article.id})}" class="btn btn-warning">업데이트</a>
+    <a th:href="@{/articles/{id}/delete (id=${article.id})}" class="btn btn-warning">삭제</a>
+  </div>
+
+
+  <hr>
+
+  <!-- 게시글 영역 -->
+  <p><strong>작성인:</strong> [[${article.writer}]]</p>
+  <p><strong>내용:</strong> [[${article.content}]]</p>
+
+  <hr>
+
+  <h2>댓글</h2>
+
+  <form th:action="@{/articles/{id}/comments/{cmtId}/update (id=${article.id}, cmtId=${comment.id})}" method="post" class="mb-4">
+
+    <div class="form-group">
+      <label for="writer-input">작성인:</label>
+      <input type="text" id="writer-input" name="writer" class="form-control" th:value="${comment.writer}">
+    </div>
+
+    <div class="form-group">
+      <label for="comment-input">댓글:</label>
+      <input type="text" id="comment-input" name="content" class="form-control" th:value="${comment.content}">
+    </div>
+
+    <label for="password">비밀번호: </label>
+    <input type="password" id="password" name="inputPassword" placeholder="비밀번호 입력하세요:">
+
+
+    <input type="submit" value="업데이트" class="btn btn-primary">
+  </form>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

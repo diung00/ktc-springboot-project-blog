@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,27 +9,23 @@
 </head>
 <body>
 <div class="container mt-4">
-    <h1 class="mb-4">홈</h1>
 
-    <!-- Không có bài viết -->
-    <div th:if="${board_titleList.isEmpty()}" class="alert alert-info">
+    <div th:if="${boards.isEmpty()}" class="alert alert-info text-center">
         게시판이 없습니다
     </div>
 
-    <!-- Có bài viết -->
-    <div class="card mb-3" >
+    <div class="card mb-3 text-center">
         <div class="card-body">
-        <a href="/articles">전체 게시글 보기</a>
+
+            <h1><a href="/articles">전체 게시글 보기</a></h1>
         </div>
     </div>
 
-    <div th:unless="${board_titleList.isEmpty()}" th:each="board : ${board_titleList}">
+    <div th:unless="${boards.isEmpty()}" th:each="board : ${boards}">
         <div class="card mb-3">
-
             <div class="card-body">
-
                 <a th:href="@{/boards/{id} (id=${board.id})}" class="card-link">
-                    <h2>[[${board.id}]]. [[${board.board_title}]]</h2>
+                    <h3>[[${board.id}]]. [[${board.boardTitle}]]</h3>
                 </a>
             </div>
         </div>
