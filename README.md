@@ -1,4 +1,4 @@
-# Shopping Mall System
+# Blog Web Application
 
 This project aims to develop a blog and commenting website that allows users to create posts and comment anonymously. The platform will enable users to express their thoughts freely and engage in discussions without revealing their identities, promoting open communication and diverse perspectives.
 The website was built using the MVC (Model-View-Controller) architecture, ensuring a clear separation of concerns, which will enhance maintainability and scalability.
